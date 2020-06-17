@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import { Container, SectionTitle } from "./styles";
 
 const Details = ({ location }) => {
@@ -9,7 +8,6 @@ const Details = ({ location }) => {
     <Container>
       <header>
         <h1>{movie.title}</h1>
-
         <h2>Director: {movie.director}</h2>
         <h2>Episode: {movie.episode_id}</h2>
       </header>
@@ -21,6 +19,11 @@ const Details = ({ location }) => {
         </section>
         <section>
           <SectionTitle>Characters</SectionTitle>
+          {/* <ul>
+            {movie.characters.map((char) => (
+              <li key={char}> {char}</li>
+            ))}
+          </ul> */}
         </section>
         <section>
           <SectionTitle>Planets</SectionTitle>
