@@ -19,10 +19,28 @@ function Card() {
     getMovies();
   }, []);
 
-  const moreDetails = (e, movie) => {
-    e.preventDefault();
+  const getCharacters = async (movie) => {
+    const response = movie.characters.map(async (char) => await api.get(char));
 
-    history.push("/details", [movie]);
+    return Promise.all(response).then((arrayCharacter) => {
+      return arrayCharacter.map((char) => {
+        return char.data.name;
+      });
+    });
+  };
+
+  const moreDetails = async (e, movie) => {
+    e.preventDefault();
+    setLoading(true);
+
+    const arrayChar = await getCharacters(movie);
+
+    const obj = {
+      movie: { ...movie, arrayChar },
+    };
+
+    setLoading(false);
+    history.push("/details", obj);
   };
 
   return (

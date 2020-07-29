@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Container, SectionTitle } from "./styles";
 
 const Details = ({ location }) => {
-  const [movie] = useState(location.state[0]);
+  const [movie] = useState(location.state.movie);
 
   return (
     <Container>
@@ -19,11 +19,11 @@ const Details = ({ location }) => {
         </section>
         <section>
           <SectionTitle>Characters</SectionTitle>
-          {/* <ul>
-            {movie.characters.map((char) => (
-              <li key={char}> {char}</li>
+          <ul>
+            {movie.arrayChar.map((char) => (
+              <li key={char}>{char}</li>
             ))}
-          </ul> */}
+          </ul>
         </section>
         <section>
           <SectionTitle>Planets</SectionTitle>
