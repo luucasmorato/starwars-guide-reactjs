@@ -2,14 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { ListMovies } from "./styles";
 import Loader from "../Loader";
-import {
-  getCharacters,
-  getPlanets,
-  getMovies,
-  getSpecies,
-  getStarships,
-  getVehicles,
-} from "../../services/manager";
+import { getMovies, getDetails } from "../../services/manager";
 
 function Card() {
   const [movies, setMovies] = useState([]);
@@ -28,11 +21,11 @@ function Card() {
     e.preventDefault();
     setLoading(true);
 
-    const arrayCharacters = await getCharacters(movie);
-    const arrayPlanets = await getPlanets(movie);
-    const arraySpecies = await getSpecies(movie);
-    const arrayStarships = await getStarships(movie);
-    const arrayVehicles = await getVehicles(movie);
+    const arrayCharacters = await getDetails(movie.characters);
+    const arrayPlanets = await getDetails(movie.planets);
+    const arraySpecies = await getDetails(movie.species);
+    const arrayStarships = await getDetails(movie.starships);
+    const arrayVehicles = await getDetails(movie.vehicles);
 
     const objMovie = {
       movie: {
