@@ -2,7 +2,14 @@ import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { ListMovies } from "./styles";
 import Loader from "../Loader";
-import api from "../../services/api";
+import {
+  getCharacters,
+  getPlanets,
+  getMovies,
+  getSpecies,
+  getStarships,
+  getVehicles,
+} from "../../services/manager";
 
 function Card() {
   const [movies, setMovies] = useState([]);
@@ -10,37 +17,36 @@ function Card() {
   const history = useHistory();
 
   useEffect(() => {
-    async function getMovies() {
-      const response = await api.get("/films");
-      setMovies(response.data.results);
+    const onLoad = async () => {
+      setMovies(await getMovies());
       setLoading(false);
-    }
-
-    getMovies();
+    };
+    onLoad();
   }, []);
-
-  const getCharacters = async (movie) => {
-    const response = movie.characters.map(async (char) => await api.get(char));
-
-    return Promise.all(response).then((arrayCharacter) => {
-      return arrayCharacter.map((char) => {
-        return char.data.name;
-      });
-    });
-  };
 
   const moreDetails = async (e, movie) => {
     e.preventDefault();
     setLoading(true);
 
-    const arrayChar = await getCharacters(movie);
+    const arrayCharacters = await getCharacters(movie);
+    const arrayPlanets = await getPlanets(movie);
+    const arraySpecies = await getSpecies(movie);
+    const arrayStarships = await getStarships(movie);
+    const arrayVehicles = await getVehicles(movie);
 
-    const obj = {
-      movie: { ...movie, arrayChar },
+    const objMovie = {
+      movie: {
+        ...movie,
+        characters: [...arrayCharacters],
+        planets: [...arrayPlanets],
+        species: [...arraySpecies],
+        starships: [...arrayStarships],
+        vehicles: [...arrayVehicles],
+      },
     };
 
     setLoading(false);
-    history.push("/details", obj);
+    history.push("/details", objMovie);
   };
 
   return (

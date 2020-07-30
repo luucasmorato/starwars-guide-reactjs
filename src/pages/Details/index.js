@@ -20,22 +20,42 @@ const Details = ({ location }) => {
         <section>
           <SectionTitle>Characters</SectionTitle>
           <ul>
-            {movie.arrayChar.map((char) => (
+            {movie.characters.map((char) => (
               <li key={char}>{char}</li>
             ))}
           </ul>
         </section>
         <section>
           <SectionTitle>Planets</SectionTitle>
+          <ul>
+            {movie.planets.map((planet) => (
+              <li key={planet}>{planet}</li>
+            ))}
+          </ul>
         </section>
         <section>
           <SectionTitle>Species</SectionTitle>
+          <ul>
+            {movie.species.map((specie) => (
+              <li key={specie}>{specie}</li>
+            ))}
+          </ul>
         </section>
         <section>
           <SectionTitle>Starships</SectionTitle>
+          <ul>
+            {movie.starships.map((starship) => (
+              <li key={starship}>{starship}</li>
+            ))}
+          </ul>
         </section>
         <section>
           <SectionTitle>Vehicles</SectionTitle>
+          <ul>
+            {movie.vehicles.map((vehicle) => (
+              <li key={vehicle}>{vehicle}</li>
+            ))}
+          </ul>
         </section>
       </div>
     </Container>
