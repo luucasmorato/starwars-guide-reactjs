@@ -1,3 +1,6 @@
+# Star Wars Guide
+This project consumes the api https://swapi.dev/api and presents data on all films
+
 ## Available Scripts
 In the project directory, you can run:
 
