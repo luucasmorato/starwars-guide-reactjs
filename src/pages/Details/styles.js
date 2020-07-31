@@ -18,19 +18,7 @@ export const Container = styled.div`
       margin-bottom: 5px;
     }
   }
-
-  div {
-    section {
-      margin: 20px 0;
-      header {
-        font-weight: bold;
-      }
-    }
+  .description {
+    padding-top: 20px;
   }
-`;
-
-export const SectionTitle = styled.div`
-  font-weight: bold;
-  margin-bottom: 5px;
-  font-size: 1.2rem;
 `;

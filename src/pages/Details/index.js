@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Container, SectionTitle } from "./styles";
+import { Container } from "./styles";
+import DetailsList from "../../components/DetailsList";
 
 const Details = ({ location }) => {
   const [movie] = useState(location.state.movie);
@@ -13,50 +14,12 @@ const Details = ({ location }) => {
       </header>
 
       <div>
-        <section>
-          <SectionTitle>Description: </SectionTitle>
-          <p>{movie.opening_crawl}</p>
-        </section>
-        <section>
-          <SectionTitle>Characters</SectionTitle>
-          <ul>
-            {movie.characters.map((char) => (
-              <li key={char}>{char}</li>
-            ))}
-          </ul>
-        </section>
-        <section>
-          <SectionTitle>Planets</SectionTitle>
-          <ul>
-            {movie.planets.map((planet) => (
-              <li key={planet}>{planet}</li>
-            ))}
-          </ul>
-        </section>
-        <section>
-          <SectionTitle>Species</SectionTitle>
-          <ul>
-            {movie.species.map((specie) => (
-              <li key={specie}>{specie}</li>
-            ))}
-          </ul>
-        </section>
-        <section>
-          <SectionTitle>Starships</SectionTitle>
-          <ul>
-            {movie.starships.map((starship) => (
-              <li key={starship}>{starship}</li>
-            ))}
-          </ul>
-        </section>
-        <section>
-          <SectionTitle>Vehicles</SectionTitle>
-          <ul>
-            {movie.vehicles.map((vehicle) => (
-              <li key={vehicle}>{vehicle}</li>
-            ))}
-          </ul>
-        </section>
+        <p className="description">{movie.opening_crawl}</p>
+        <DetailsList movie={movie.characters} title="Characters" />
+        <DetailsList movie={movie.planets} title="Planets" />
+        <DetailsList movie={movie.species} title="Species" />
+        <DetailsList movie={movie.starships} title="Starships" />
+        <DetailsList movie={movie.vehicles} title="Vehicles" />
       </div>
     </Container>
   );
